@@ -167,19 +167,8 @@ void array_print_file(TYPE *array, size_t const size, char const *path, int cons
 
 /* -------------------------------------------------------------------------------- 3. SORT AN ARRAY -------------------------------------------------------------------------------- */
 
-
 /* swap two elements of the array */
-void array_swap(TYPE *a, TYPE *b) {
-
-    /* swap */
-    TYPE temp = *a;
-    *a = *b;
-    *b = temp;
-
-    /* exit */
-    return;
-
-}
+extern void array_swap(TYPE *a, TYPE *b);
 
 
 /* partition an array from a pivot */
@@ -531,49 +520,11 @@ void array_block_sort(TYPE *array, size_t const start, size_t const end) {
 
 
 /* check if the array is sorted */
-int array_is_sorted(TYPE *array, size_t const start, size_t end) {
-
-    /* check the indexes */
-    if (start > end) {
-
-        /* exit */
-        return 0;
-
-    }
-
-    /* check if the array is sorted */
-    for (size_t i = start; i < end; i++) {
-
-        if (array[i] > array[i + 1]) {
-
-            return 0;
-
-        }
-
-    }
-
-    /* exit */
-    return 1;
-
-}
+extern int array_is_sorted(TYPE *array, size_t const start, size_t const end);
 
 
 /* reverse an array */
-void array_reverse(TYPE *array, size_t const start, size_t const end) {
-
-    /* reverse */
-    size_t middle = (start + end) >> 1;
-    for (size_t i = start; i <= middle; i++) {
-
-        /* swap the elements */
-        array_swap(&array[i], &array[end - i + start]);
-
-    }
-
-    /* exit */
-    return;
-
-}
+extern void array_reverse(TYPE *array, size_t const start, size_t const end);
 
 
 /* library end definition */
