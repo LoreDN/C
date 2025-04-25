@@ -16,11 +16,11 @@ Since the libraries work as templates, the files are divided in: a <i>'library.h
 <br>
 <br>
 
-## :small_red_triangle_down: Optmization to Low-Level (Machine Instructions) 
+## :small_red_triangle_down: Optimization to Low-Level (Machine Instructions) 
 In order to optimize the library, some functions have been implemented directly in <b>Assembly</b>; in particular have been used <b>x86_64</b> and <b>RISC-V</b> Assembly, but it can vary for each library.
 If a library has been optimized in Assembly, all the needed info are given in the corrispective <i>'library.h'</i> file.
 
 ## :open_book: Contents of the libraries
 Here is a list of the libraries wich can be found in the repo, everyone in their subfolder:<br>
 ### 1. <b>myArray</b>
->a simple library wich allows to work with arrays, such as scanning and printing an array from or to diffrent sources (terminal,file), sorting an array, use some statistics and maths functions.
+>a simple library wich allows to work with arrays, such as scanning and printing an array from or to different sources (terminal,file), sorting an array, use some statistics and maths functions.

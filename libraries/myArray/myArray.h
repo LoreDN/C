@@ -1,11 +1,11 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *
-*  This library contains some useful functions to work with arrays; it is designed to be used with all numeric types ( int, float, ecc... ).
+*  This library contains some usefull functions to work with arrays; it is designed to be used with all numeric types ( int, float, ecc... ).
 *  In order to use a specific type, it is necessary to add the right 'myArray_type.c' files when compiling.
 *  For max optimization, some functions have been implemented directly in assembly ( the functions with the 'extern' prefix ).
 *  Since the library cointains external files, is raccomended to use the 'Makefile' given with the library.
 *
-*  The functions included in this library are divided in three groups:
+*  The functions included in this library are divided in four groups:
 *     1. SCAN AN ARRAY: used to scan an array from user input or from a file.
 *     2. PRINT AN ARRAY: used to print an array to the user or to a file.
 *     3. SORT AN ARRAY: used to sort an array using different sorting algorithms.
