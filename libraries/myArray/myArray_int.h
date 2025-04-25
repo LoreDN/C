@@ -49,6 +49,13 @@ extern int array_is_sorted_int(TYPE *array, size_t const start, size_t const end
 
 extern void array_reverse_int(TYPE *array, size_t const start, size_t const end);
 
+/* -------------------------------------------------------------------------- 4. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+
+TYPE array_max_int(TYPE *array, size_t const start, size_t const end);
+TYPE array_min_int(TYPE *array, size_t const start, size_t const end);
+TYPE array_sum_int(TYPE *array, size_t const start, size_t const end);
+float array_average_int(TYPE *array, size_t const start, size_t const end);
+
 
 /* end of library */
 #undef TYPE

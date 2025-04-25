@@ -25,6 +25,10 @@
 #define array_block_sort array_block_sort_float
 #define array_is_sorted array_is_sorted_float
 #define array_reverse array_reverse_float
+#define array_max array_max_float
+#define array_min array_min_float
+#define array_sum array_sum_float
+#define array_average array_average_float
 
 /* library definition */
 #include "myArray.h"
@@ -527,6 +531,136 @@ extern int array_is_sorted(TYPE *array, size_t const start, size_t end);
 extern void array_reverse(TYPE *array, size_t const start, size_t const end);
 
 
+/* -------------------------------------------------------------------------- 4. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+
+
+/* get the maximum value of an array */
+TYPE array_max(TYPE *array, size_t const start, size_t const end) {
+
+    /* check the indexes */
+    if (start > end) {
+
+        /* exit */
+        return 0;
+
+    }
+
+    /* check if array is sorted */
+    if (array_is_sorted(array, start, end) == 1) {
+
+        /* exit */
+        return array[end];
+
+    }
+
+    /* get the maximum value */
+    TYPE max = array[start];
+    for (size_t i = start + 1; i <= end; i++) {
+
+        /* check the elements */
+        if (array[i] > max) {
+
+            max = array[i];
+
+        }
+
+    }
+
+    /* exit */
+    return max;
+
+}
+
+
+/* get the minimum value of an array */
+TYPE array_min(TYPE *array, size_t const start, size_t const end) {
+
+    /* check the indexes */
+    if (start > end) {
+
+        /* exit */
+        return 0;
+    }
+
+    /* check if array is sorted */
+    if (array_is_sorted(array, start, end) == 1) {
+
+        /* exit */
+        return array[start];
+
+    }
+
+    /* get the minimum value */
+    TYPE min = array[start];
+    for (size_t i = start + 1; i <= end; i++) {
+
+        /* check the elements */
+        if (array[i] < min) {
+
+            min = array[i];
+
+        }
+
+    }
+
+    /* exit */
+    return min;
+    
+}
+
+
+/* get the sum of the elements of an array */
+TYPE array_sum(TYPE *array, size_t const start, size_t const end) {
+
+    /* check the indexes */
+    if (start > end) {
+
+        /* exit */
+        return 0;
+
+    }
+
+    /* get the sum of the elements */
+    TYPE sum = 0;
+    for (size_t i = start; i <= end; i++) {
+
+        sum += array[i];
+
+    }
+
+    /* exit */
+    return sum;
+
+}
+
+
+/* get the average of the elements of the array */
+float array_average(TYPE *array, size_t const start, size_t const end) {
+
+    /* check the indexes */
+    if (start > end) {
+
+        /* exit */
+        return 0;
+
+    }
+
+    /* get the average of the elements */
+    size_t size = end - start + 1;
+    float average = 0;
+    for (size_t i = start; i <= end; i++) {
+
+        average += array[i];
+
+    }
+    average /= size;    
+
+    /* exit */
+    return average;    
+
+}
+
+
 /* library end definition */
 #undef array_scan
 #undef array_scan_file
@@ -545,6 +679,10 @@ extern void array_reverse(TYPE *array, size_t const start, size_t const end);
 #undef array_block_sort
 #undef array_is_sorted
 #undef array_reverse
+#undef array_max
+#undef array_min
+#undef array_sum
+#undef array_average
 
 
 #undef TYPE

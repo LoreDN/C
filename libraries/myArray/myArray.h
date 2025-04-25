@@ -9,6 +9,7 @@
 *     1. SCAN AN ARRAY: used to scan an array from user input or from a file.
 *     2. PRINT AN ARRAY: used to print an array to the user or to a file.
 *     3. SORT AN ARRAY: used to sort an array using different sorting algorithms.
+*     4. STATISTICS ON THE ELEMENTS: used to calculate some statistics on the elements of an array (such as max/min values).
 *
 *
 *  |-----** IMPORTANT!!! **-----|
@@ -61,3 +62,10 @@ void array_block_sort(TYPE *array, size_t const start, size_t const end);
 extern int array_is_sorted(TYPE *array, size_t const start, size_t const end);
 
 extern void array_reverse(TYPE *array, size_t const start, size_t const end);
+
+/* -------------------------------------------------------------------------- 4. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+
+TYPE array_max(TYPE *array, size_t const start, size_t const end);
+TYPE array_min(TYPE *array, size_t const start, size_t const end);
+TYPE array_sum(TYPE *array, size_t const start, size_t const end);
+float array_average(TYPE *array, size_t const start, size_t const end);
