@@ -44,6 +44,7 @@ void array_quick_sort_float(TYPE *array, size_t const start, size_t const end);
 void array_heap_sort_float(TYPE *array, size_t const start, size_t const end);
 void array_merge_sort_float(TYPE *array, size_t const start, size_t const end);
 void array_block_sort_float(TYPE *array, size_t const start, size_t const end);
+void array_counting_sort_float(TYPE *array, size_t const start, size_t const end, int const flag_stable);
 
 extern int array_is_sorted_float(TYPE *array, size_t const start, size_t const end);
 
@@ -55,6 +56,7 @@ TYPE array_max_float(TYPE *array, size_t const start, size_t const end);
 TYPE array_min_float(TYPE *array, size_t const start, size_t const end);
 TYPE array_sum_float(TYPE *array, size_t const start, size_t const end);
 float array_average_float(TYPE *array, size_t const start, size_t const end);
+int *array_histogram_float(TYPE *array, size_t const start, size_t const end, size_t const min, size_t const max);
 
 
 /* end of library */

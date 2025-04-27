@@ -23,12 +23,14 @@
 #define array_heap_sort array_heap_sort_float
 #define array_merge_sort array_merge_sort_float
 #define array_block_sort array_block_sort_float
+#define array_counting_sort array_counting_sort_float
 #define array_is_sorted array_is_sorted_float
 #define array_reverse array_reverse_float
 #define array_max array_max_float
 #define array_min array_min_float
 #define array_sum array_sum_float
 #define array_average array_average_float
+#define array_histogram array_histogram_float
 
 /* library definition */
 #include "myArray.h"
@@ -523,6 +525,94 @@ void array_block_sort(TYPE *array, size_t const start, size_t const end) {
 }
 
 
+/* Counting Sort */
+void array_counting_sort(TYPE *array, size_t const start, size_t const end, int const flag_stable) {
+
+    /* check the indexes */
+    if (start >= end) {
+
+        /* exit */
+        return;
+
+    }
+
+    /* get the maximum and minimun values */
+    size_t max = array_max(array,start,end);
+    size_t min = array_min(array, start, end);
+    size_t size = max - min + 1;
+    
+    /* get the histogram */
+    int *histogram = array_histogram(array, start, end, min, max);
+    if (histogram == NULL) {
+
+        /* exit */
+        return;
+
+    }
+
+    /* if flag is set to 1, use stable Counting Sort */
+    if (flag_stable == 1) {
+
+        /* stabilize the histogram */
+        int sum = 0;
+        for (size_t i = 0; i < size; i++) {
+
+            sum += histogram[i];
+            histogram[i] = sum;
+        }
+
+        /* copy the array */
+        TYPE *temp = malloc((end - start + 1) * sizeof(TYPE));
+        for (size_t i = start; i <= end; i++) {
+
+            temp[i - start] = array[i];
+
+        }
+
+        /* sort the array */
+        for (size_t i = end; i > start; i--) {
+
+            array[histogram[(size_t)temp[i - start] - min] - 1 + start] = (int)temp[i - start];
+            histogram[(size_t)temp[i - start] - min]--;
+
+        }
+        /* copy the last element */
+        array[histogram[(size_t)temp[0] - min] - 1 + start] = (int)temp[0];
+
+        /* free the memory */
+        free(temp);
+        temp = NULL;
+
+    } else {
+
+        for (size_t i = 0, j = start; i < size; i++) {
+
+            /* check the value */
+            if (histogram[i] > 0) {
+
+                /* insert the value */
+                for (size_t k = 0; k < histogram[i]; k++) {
+
+                    array[j++] = i + min;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    /* free the memory */
+    free(histogram);
+    histogram = NULL;
+
+    /* exit */
+    return;
+
+}
+
+
 /* check if the array is sorted */
 extern int array_is_sorted(TYPE *array, size_t const start, size_t end);
 
@@ -661,6 +751,34 @@ float array_average(TYPE *array, size_t const start, size_t const end) {
 }
 
 
+/* build the hiostogram of the array */
+int *array_histogram(TYPE *array, size_t const start, size_t const end, size_t const min, size_t const max) {
+
+    /* allocate the histogram */
+    size_t size = max - min + 1;
+    int *histogram = calloc(size, sizeof(int));
+
+    /* build the histogram */
+    for (size_t i = start; i <= end; i++) {
+
+        /* check the value */
+        if (array[i] < min || array[i] > max) {
+
+            /* exit */
+            free(histogram);
+            return NULL;
+
+        }
+        histogram[(size_t)array[i] - min] ++;
+
+    }
+
+    /* exit */
+    return histogram;
+
+}
+
+
 /* library end definition */
 #undef array_scan
 #undef array_scan_file
@@ -677,12 +795,14 @@ float array_average(TYPE *array, size_t const start, size_t const end) {
 #undef array_heap_sort
 #undef array_merge_sort
 #undef array_block_sort
+#undef array_counting_sort
 #undef array_is_sorted
 #undef array_reverse
 #undef array_max
 #undef array_min
 #undef array_sum
 #undef array_average
+#undef array_histogram
 
 
 #undef TYPE
