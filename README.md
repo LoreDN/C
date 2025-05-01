@@ -20,7 +20,7 @@ For the libraries that work as templates, the files are divided in the following
 <br>
 
 ## :small_red_triangle_down: Optimization to Low-Level (Machine Instructions) 
-In order to optimize the library, some functions have been implemented directly in <strong>Assembly</strong>; in particular have been used <strong>x86_64</strong> and <strong>RISC-V</strong> Assembly, but it can be different depending from the library.
+In order to optimize the libraries, some functions have been implemented directly in <strong>Assembly</strong>; in particular have been used <strong>x86_64</strong> and <strong>RISC-V</strong> Assembly, but it can be different depending from the library.
 If a library has been optimized in Assembly, all the needed info are given in the corrispective <em>'library.h'</em> file.
 <br>
 <br>
