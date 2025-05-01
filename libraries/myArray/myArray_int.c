@@ -26,6 +26,10 @@
 #define array_counting_sort array_counting_sort_int
 #define array_is_sorted array_is_sorted_int
 #define array_reverse array_reverse_int
+#define array_find array_find_int
+#define array_binary_search array_binary_search_int
+#define array_fill array_fill_int
+#define array_copy array_copy_int
 #define array_max array_max_int
 #define array_min array_min_int
 #define array_sum array_sum_int
@@ -653,107 +657,98 @@ extern int array_is_sorted(TYPE *array, size_t const start, size_t const end);
 extern void array_reverse(TYPE *array, size_t const start, size_t const end);
 
 
-/* -------------------------------------------------------------------------- 4. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------- 4. UTILITY ----------------------------------------------------------------------------------- */
 
 
-/* get the maximum value of an array */
-TYPE array_max(TYPE *array, size_t const start, size_t const end) {
-
-    /* check the indexes */
-    if (start > end) {
-
-        /* exit */
-        return 0;
-
-    }
-
-    /* check if array is sorted */
-    if (array_is_sorted(array, start, end) == 1) {
-
-        /* exit */
-        return array[end];
-
-    }
-
-    /* get the maximum value */
-    TYPE max = array[start];
-    for (size_t i = start + 1; i <= end; i++) {
-
-        /* check the elements */
-        if (array[i] > max) {
-
-            max = array[i];
-
-        }
-
-    }
-
-    /* exit */
-    return max;
-
-}
+/* find the first occurrence of a value in the array by linear search */
+extern int array_find(TYPE *array, size_t const start, size_t const end, TYPE const value);
 
 
-/* get the minimum value of an array */
-TYPE array_min(TYPE *array, size_t const start, size_t const end) {
+/* find the first occurrence of a value in the array by binary search */
+int array_binary_search(TYPE *array, size_t const start, size_t const end, TYPE const value) {
 
     /* check the indexes */
     if (start > end) {
 
         /* exit */
-        return 0;
-    }
+        return -1;
 
-    /* check if array is sorted */
-    if (array_is_sorted(array, start, end) == 1) {
+    } else if (start == end) {
 
-        /* exit */
-        return array[start];
+        /* check the value */
+        if (array[start] == value) {
 
-    }
+            /* exit */
+            return start;
 
-    /* get the minimum value */
-    TYPE min = array[start];
-    for (size_t i = start + 1; i <= end; i++) {
+        } else {
 
-        /* check the elements */
-        if (array[i] < min) {
-
-            min = array[i];
+            /* exit */
+            return -1;
 
         }
 
     }
 
+    /* check if the array is sorted */
+    if (array_is_sorted(array, start, end) == 0) {
+
+        /* exit */
+        return -2;
+
+    }
+
+    /* get the middle of the array */
+    size_t middle = (start + end) >> 1;
+
+    /* search the value */
+    if (array[middle] == value) {
+
+        /* exit */
+        return middle;
+
+    } else if (array[middle] < value) {
+        
+        middle = array_binary_search(array, middle + 1, end, value);
+
+    } else if (array[middle] > value) {
+
+        middle = array_binary_search(array, start, middle - 1, value);
+
+    } else {
+
+        /* exit */
+        return -1;
+
+    }
+
     /* exit */
-    return min;
-    
+    return middle;
+
 }
+
+
+/* fill the array with a value */
+extern void array_fill(TYPE *array, size_t const start, size_t const end, TYPE const value);
+
+
+/* copy the array from a src */
+extern void array_copy(TYPE *array, size_t const start, size_t const end, TYPE *src, size_t const src_idx);
+
+
+/* -------------------------------------------------------------------------- 5. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+
+
+/* get the maximum value of the array */
+extern TYPE array_max(TYPE *array, size_t const start, size_t const end);
+
+
+/* get the minimum value of the array */
+extern TYPE array_min(TYPE *array, size_t const start, size_t const end);
 
 
 /* get the sum of the elements of an array */
-TYPE array_sum(TYPE *array, size_t const start, size_t const end) {
-
-    /* check the indexes */
-    if (start > end) {
-
-        /* exit */
-        return 0;
-
-    }
-
-    /* get the sum of the elements */
-    TYPE sum = 0;
-    for (size_t i = start; i <= end; i++) {
-
-        sum += array[i];
-
-    }
-
-    /* exit */
-    return sum;
-
-}
+extern TYPE array_sum(TYPE *array, size_t const start, size_t const end);
 
 
 /* get the average of the elements of the array */
@@ -778,7 +773,7 @@ float array_average(TYPE *array, size_t const start, size_t const end) {
 }
 
 
-/* build the hiostogram of the array */
+/* build the histogram of the array */
 int *array_histogram(TYPE *array, size_t const start, size_t const end, size_t const min, size_t const max) {
 
     /* allocate the histogram */
@@ -825,6 +820,10 @@ int *array_histogram(TYPE *array, size_t const start, size_t const end, size_t c
 #undef array_counting_sort
 #undef array_is_sorted
 #undef array_reverse
+#undef array_find
+#undef array_binary_search
+#undef array_fill
+#undef array_copy
 #undef array_max
 #undef array_min
 #undef array_sum

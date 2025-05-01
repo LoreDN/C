@@ -5,11 +5,12 @@
 *  For max optimization, some functions have been implemented directly in assembly ( the functions with the 'extern' prefix ).
 *  Since the library cointains external files, is raccomended to use the 'Makefile' given with the library.
 *
-*  The functions included in this library are divided in four groups:
+*  The functions included in this library are divided in five groups:
 *     1. SCAN AN ARRAY: used to scan an array from user input or from a file.
 *     2. PRINT AN ARRAY: used to print an array to the user or to a file.
 *     3. SORT AN ARRAY: used to sort an array using different sorting algorithms.
-*     4. STATISTICS ON THE ELEMENTS: used to calculate some statistics on the elements of an array (such as max/min values).
+*     4. UTILITY: casual use functions (such as binary search).
+*     5. STATISTICS ON THE ELEMENTS: used to calculate some statistics on the elements of an array (such as max/min values).
 *
 *
 *  |-----** IMPORTANT!!! **-----|
@@ -64,10 +65,17 @@ extern int array_is_sorted(TYPE *array, size_t const start, size_t const end);
 
 extern void array_reverse(TYPE *array, size_t const start, size_t const end);
 
-/* -------------------------------------------------------------------------- 4. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------- 4. UTILITY ----------------------------------------------------------------------------------- */
 
-TYPE array_max(TYPE *array, size_t const start, size_t const end);
-TYPE array_min(TYPE *array, size_t const start, size_t const end);
-TYPE array_sum(TYPE *array, size_t const start, size_t const end);
+extern int array_find(TYPE *array, size_t const start, size_t const end, TYPE const value);
+int array_binary_search(TYPE *array, size_t const start, size_t const end, TYPE const value);
+extern void array_fill(TYPE *array, size_t const start, size_t const end, TYPE const value);
+extern void array_copy(TYPE *array, size_t const start, size_t const end, TYPE *src, size_t const src_idx);
+
+/* -------------------------------------------------------------------------- 5. STATISTICS ON THE ELEMENTS ------------------------------------------------------------------------- */
+
+extern TYPE array_max(TYPE *array, size_t const start, size_t const end);
+extern TYPE array_min(TYPE *array, size_t const start, size_t const end);
+extern TYPE array_sum(TYPE *array, size_t const start, size_t const end);
 float array_average(TYPE *array, size_t const start, size_t const end);
 int *array_histogram(TYPE *array, size_t const start, size_t const end, size_t const min, size_t const max);

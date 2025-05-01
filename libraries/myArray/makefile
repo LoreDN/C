@@ -9,9 +9,9 @@ SRC_PROJECT = main.c # ---------- Project '.c' file
 
 # Assembly Sources
 ASM_DIR = assembly
-ASM_SRC = swap is_sorted reverse
-ASM_OBJ_INT = $(patsubst %, array_%_int.o, $(ASM_SRC))
-ASM_OBJ_FLOAT = $(patsubst %, array_%_float.o, $(ASM_SRC))
+ASM_SRC = swap is_sorted reverse max min sum find fill copy
+ASM_OBJ_INT = $(patsubst %, $(ASM_DIR)/array_%_int.o, $(ASM_SRC))
+ASM_OBJ_FLOAT = $(patsubst %, $(ASM_DIR)/array_%_float.o, $(ASM_SRC))
 
 # Binaries
 EXEC_INT = main_int
@@ -22,11 +22,11 @@ EXEC_INT_FLOAT = main_int_float
 # ================== Compiling Assembly Optimized Functions ==================
 
 # ASM_OBJ_INT Rule
-array_%_int.o: $(ASM_DIR)/array_%.S
+$(ASM_DIR)/array_%_int.o: $(ASM_DIR)/array_%.S
 	@$(CC) -c $< -DINT_TYPE -o $@
 
 # ASM_OBJ_INT Rule
-array_%_float.o: $(ASM_DIR)/array_%.S
+$(ASM_DIR)/array_%_float.o: $(ASM_DIR)/array_%.S
 	@$(CC) -c $< -DFLOAT_TYPE -o $@
 
 
