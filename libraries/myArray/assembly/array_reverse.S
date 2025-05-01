@@ -2,7 +2,6 @@
 
 # array_reverse_int()
 /* ========================== INT ========================== */
-
 #ifdef INT_TYPE
 
     /* ------ x86_64 Architecture ------ */
@@ -149,7 +148,6 @@
 
 # array_reverse_float()
 /* ========================== FLOAT ========================== */
-
 #ifdef FLOAT_TYPE
 
     /* ------ x86_64 Architecture ------ */
@@ -271,6 +269,7 @@
             lw      t0, 0(sp)
             lw      t1, 4(sp)
             lw      t2, 8(sp)
+            addi    sp, sp, 12
 
             # i++
             addi    t1, t1, 4

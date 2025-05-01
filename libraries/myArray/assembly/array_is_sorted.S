@@ -2,7 +2,6 @@
 
 # array_is_sorted_int()
 /* ========================== INT ========================== */
-
 #ifdef INT_TYPE
 
     /* ------ x86_64 Architecture ------ */
@@ -111,7 +110,6 @@
 
 # array_is_sorted_float()
 /* ========================= FLOAT ========================= */
-
 #ifdef FLOAT_TYPE
 
     /* ------ x86_64 Architecture ------ */

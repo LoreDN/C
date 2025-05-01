@@ -2,7 +2,6 @@
 
 # array_swap_int()
 /* ========================== INT ========================== */
-
 #ifdef INT_TYPE
 
     /* ------ x86_64 Architecture ------ */
@@ -50,7 +49,6 @@
 
 # array_swap_float()
 /* ========================= FLOAT ========================= */
-
 #ifdef FLOAT_TYPE
 
     /* ------ x86_64 Architecture ------ */
