@@ -12,7 +12,7 @@
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *
-*  This header file is part of the myArray library, it is designed as the file to include in order to use the libary with type float.
+*  This header file is part of the myArray library, it is designed as the file to include in order to use the library with type float.
 *
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
