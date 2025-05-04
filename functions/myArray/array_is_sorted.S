@@ -1,4 +1,11 @@
-# array_is_sorted(): check if the array is sorted
+/* ---------------------------------------------------------------------------------------------------------------
+*
+*  int array_is_sorted(TYPE *array, size_t const start, size_t const end);
+*  
+*  check if the array is sorted
+*
+--------------------------------------------------------------------------------------------------------------- */
+
 
 # array_is_sorted_int()
 /* ========================== INT ========================== */
@@ -9,6 +16,7 @@
 
         .global array_is_sorted_int
         .type array_is_sorted_int, @function
+        .text
 
 
         array_is_sorted_int:
@@ -61,6 +69,7 @@
 
         .global array_is_sorted_int
         .type array_is_sorted_int, @function
+        .text
 
 
         array_is_sorted_int:
@@ -70,6 +79,9 @@
 
             # load end
             slli    a2, a2, 2
+
+            # load &array[start]
+            add     t0, a1, a0
 
             # check the indexes
             blt     a1, a2, loop_array_is_sorted_int
@@ -86,12 +98,15 @@
             bge     a1, a2, end_array_is_sorted_int
 
             # load array[i] and array[i+1]
-            lw      t0, a1(a0)
+            lw      t1, 0(t0)
+            lw      t2, 4(t0)
+            addi    t0, t0, 4
+
+            # i++
             addi    a1, a1, 4
-            lw      t1, a1(a0)
 
             # array[i] > array[i+1] --> return 0
-            ble     t0, t1, loop_array_is_sorted_int
+            ble     t1, t2, loop_array_is_sorted_int
 
             li      a0, 0
             ret
@@ -117,6 +132,7 @@
 
         .global array_is_sorted_float
         .type array_is_sorted_float, @function
+        .text
 
 
         array_is_sorted_float:
@@ -169,6 +185,8 @@
 
         .global array_is_sorted_float
         .type array_is_sorted_float, @function
+        .text
+        
 
         array_is_sorted_float:
 
@@ -177,6 +195,9 @@
 
             # load end
             slli    a2, a2, 2
+
+            # load &array[start]
+            add     t0, a1, a0
 
             # check the indexes
             blt     a1, a2, loop_array_is_sorted_float
@@ -193,13 +214,16 @@
             bge     a1, a2, end_array_is_sorted_float
 
             # load array[i] and array[i+1]
-            flw     ft0, a1(a0)
+            flw     ft0, 0(t0)
+            flw     ft1, 4(t0)
+            addi    t0, t0, 4
+
+            # i++
             addi    a1, a1, 4
-            flw     ft1, a1(a0)
 
             # array[i] > array[i+1] --> return 0
-            fle.s   t0, ft0, ft1
-            bne     t0, zero, loop_array_is_sorted_float
+            fle.s   t1, ft0, ft1
+            bne     t1, zero, loop_array_is_sorted_float
 
             li      a0, 0
             ret

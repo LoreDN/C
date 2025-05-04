@@ -1,4 +1,11 @@
-# array_find(): find the first occurrence of a value in the array by linear search
+/* ---------------------------------------------------------------------------------------------------------------
+*
+*  int array_find(TYPE *array, size_t const start, size_t const end, TYPE const value);
+*
+*  find the first occurrence of a value in the array by linear search
+*
+--------------------------------------------------------------------------------------------------------------- */
+
 
 # array_find_int()
 /* ========================== INT ========================== */
@@ -9,6 +16,7 @@
 
         .global array_find_int
         .type array_find_int, @function
+        .text
 
 
         array_find_int:
@@ -63,6 +71,7 @@
 
         .global array_find_int
         .type array_find_int, @function
+        .text
 
 
         array_find_int:
@@ -76,6 +85,9 @@
             # load end
             slli    a2, a2, 2
 
+            # load &array[start]
+            add     t0, a0, a1
+
             # go to the loop
             j       loop_array_find_int
         
@@ -86,18 +98,19 @@
             bgt     a1, a2, end_array_find_int
             
             # load array[i]
-            lw      t0, a1(a0)
+            lw      t1, 0(t0)
+            addi    t0, t0, 4
 
             # i++
             addi    a1, a1, 4
 
             # compare array[i] with value
-            bne     t0, a3, loop_array_find_int
+            bne     t1, a3, loop_array_find_int
 
             # value found --> return i
             mv      a0, a1
+            addi    a0, a0, -4
             srai    a0, a0, 2
-            addi    a0, a0, -1
             ret
         
 
@@ -121,6 +134,7 @@
 
         .global array_find_float
         .type array_find_float, @function
+        .text
 
 
         array_find_float:
@@ -175,6 +189,7 @@
 
         .global array_find_float
         .type array_find_float, @function
+        .text
 
 
         array_find_float:
@@ -188,6 +203,9 @@
             # load end
             slli    a2, a2, 2
 
+            # load &array[start]
+            add     t0, a0, a1
+
             # go to the loop
             j       loop_array_find_float
         
@@ -198,19 +216,20 @@
             bgt     a1, a2, end_array_find_float
             
             # load array[i]
-            flw     ft0, a1(a0)
+            flw     ft0, 0(t0)
+            addi    t0, t0, 4
 
             # i++
             addi    a1, a1, 4
 
             # compare array[i] with value
-            feq.s   t0, ft0, a3
-            beq     t0, zero, loop_array_find_float            
+            feq.s   t1, ft0, fa0
+            beq     t1, zero, loop_array_find_float            
 
             # value found --> return i
             mv      a0, a1
+            addi    a0, a0, -4
             srai    a0, a0, 2
-            addi    a0, a0, -1
             ret
         
 

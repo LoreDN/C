@@ -1,4 +1,11 @@
-# array_swap(): function to swap two elements of the array
+/* ---------------------------------------------------------------------------------------------------------------
+*
+*  void array_swap(TYPE *a, TYPE *b);
+*
+*  swap two elements of the array
+*
+--------------------------------------------------------------------------------------------------------------- */
+
 
 # array_swap_int()
 /* ========================== INT ========================== */
@@ -9,6 +16,7 @@
 
         .global array_swap_int
         .type array_swap_int, @function
+        .text
 
 
         array_swap_int:
@@ -29,6 +37,7 @@
 
         .global array_swap_int
         .type array_swap_int, @function
+        .text
 
 
         array_swap_int:
@@ -56,6 +65,7 @@
 
         .global array_swap_float
         .type array_swap_float, @function
+        .text
 
 
         array_swap_float:
@@ -76,6 +86,7 @@
 
         .global array_swap_float
         .type array_swap_float, @function
+        .text
 
 
         array_swap_float:

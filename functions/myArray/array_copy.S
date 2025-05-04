@@ -1,4 +1,11 @@
-# array_copy(): copy the array from a src
+/* ---------------------------------------------------------------------------------------------------------------
+*
+*  void array_copy(TYPE *array, size_t const start, size_t const end, TYPE *src, size_t const src_idx);
+*
+*  copy the array from a src
+*
+--------------------------------------------------------------------------------------------------------------- */
+
 
 # array_copy_int()
 /* ========================== INT ========================== */
@@ -9,6 +16,7 @@
 
         .global array_copy_int
         .type array_copy_int, @function
+        .text
 
 
         array_copy_int:
@@ -62,6 +70,7 @@
 
         .global array_copy_int
         .type array_copy_int, @function
+        .text
 
 
         array_copy_int:
@@ -75,8 +84,14 @@
             # load end
             slli    a2, a2, 2
 
+            # load &array[start]
+            add     t0, a0, a1
+
             # load src_idx
             slli    a4, a4, 2
+
+            # load &src[src_idx]
+            add     t1, a3, a4
 
             # go to the loop
             j     loop_array_copy_int
@@ -85,13 +100,12 @@
         loop_array_copy_int:
 
             # load src[src_idx]
-            lw      t0, a4(a3)
+            lw      t2, 0(t1)
 
             # copy src[src_idx] to array[i]
-            sw      t0, a1(a0)
-
-            # src_idx++
-            addi    a4, a4, 4
+            sw      t2, 0(t0)
+            addi    t0, t0, 4
+            addi    t1, t1, 4
 
             # i++
             addi    a1, a1, 4
@@ -120,6 +134,7 @@
 
         .global array_copy_float
         .type array_copy_float, @function
+        .text
 
 
         array_copy_float:
@@ -173,6 +188,7 @@
 
         .global array_copy_float
         .type array_copy_float, @function
+        .text
 
 
         array_copy_float:
@@ -186,8 +202,14 @@
             # load end
             slli    a2, a2, 2
 
+            # load &array[start]
+            add     t0, a0, a1
+
             # load src_idx
             slli    a4, a4, 2
+
+            # load &src[src_idx]
+            add     t1, a3, a4
 
             # go to the loop
             j     loop_array_copy_float
@@ -196,13 +218,12 @@
         loop_array_copy_float:
 
             # load src[src_idx]
-            lw      t0, a4(a3)
+            flw     ft0, 0(t1)
 
             # copy src[src_idx] to array[i]
-            sw      t0, a1(a0)
-
-            # src_idx++
-            addi    a4, a4, 4
+            fsw     ft0, 0(t0)
+            addi    t0, t0, 4
+            addi    t1, t1, 4
 
             # i++
             addi    a1, a1, 4
