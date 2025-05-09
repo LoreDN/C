@@ -31,7 +31,7 @@ typedef struct NODE {
 
 /* --------------------------------------------------------------------------------- 1. SCAN A LIST --------------------------------------------------------------------------------- */
 
-LIST *list_add_Node_float(TYPE value);
+LIST *list_add_Node_float(TYPE const value);
 LIST *list_scan_float(size_t const size);
 LIST *list_scan_file_float(char const *path);
 
@@ -42,16 +42,26 @@ void list_print_file_float(LIST *list, char const *path, int const flag_user_int
 
 /* ---------------------------------------------------------------------------- 3. OPERATIONS ON A LIST ----------------------------------------------------------------------------- */
 
-LIST *list_insert_Head_float(LIST *list, TYPE value);
-void list_insert_Node_float(LIST *node, TYPE value);
+LIST *list_insert_Head_float(LIST *list, TYPE const value);
+void list_insert_Node_float(LIST *node, TYPE const value);
 LIST *list_delete_Head_float(LIST *list);
 void list_delete_Node_float(LIST *list, LIST *node);
+
+extern void list_swap_float(TYPE *a, TYPE *b);
+void list_sort_float(LIST *list, size_t const start, size_t const end);
+void list_reverse_float(LIST *list, size_t const start, size_t const end);
 
 extern LIST *list_copy_float(LIST *src);
 LIST *list_concatenate_float(LIST *list, LIST *src);
 
 LIST *list_free_float(LIST *list);
 
+/* ----------------------------------------------------------------------------------- 4. UTILITY ----------------------------------------------------------------------------------- */
+
+extern size_t list_length_float(LIST *list);
+LIST *list_find_float(LIST *list, TYPE const value);
+LIST *list_Node_float(LIST *list, size_t const node);
+void list_fill_float(LIST *list, size_t const start, size_t const end, TYPE const value);
 
 /* end of library */
 #undef TYPE

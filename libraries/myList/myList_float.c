@@ -26,9 +26,16 @@ typedef struct NODE {
 #define list_insert_Node list_insert_Node_float
 #define list_delete_Head list_delete_Head_float
 #define list_delete_Node list_delete_Node_float
+#define list_swap list_swap_float
+#define list_sort list_sort_float
+#define list_reverse list_reverse_float
 #define list_copy list_copy_float
 #define list_concatenate list_concatenate_float
 #define list_free list_free_float
+#define list_length list_length_float
+#define list_find list_find_float
+#define list_Node list_Node_float
+#define list_fill list_fill_float
 
 /* library definition */
 #include "myList.h"
@@ -38,7 +45,7 @@ typedef struct NODE {
 
 
 /* add a new Node to the List */
-LIST *list_add_Node(TYPE value) {
+LIST *list_add_Node(TYPE const value) {
 
     /* create the new Node */
     LIST *newNode = (LIST *)malloc(sizeof(LIST));
@@ -232,7 +239,7 @@ void list_print_file(LIST *list, char const *path, int const flag_user_interface
 
 
 /* insert a new Node as head of the List */
-LIST *list_insert_Head(LIST *list, TYPE value) {
+LIST *list_insert_Head(LIST *list, TYPE const value) {
 
     /* check the List */
     if (list == NULL) {
@@ -252,7 +259,7 @@ LIST *list_insert_Head(LIST *list, TYPE value) {
 
 
 /* insert a new Node into the List */
-void list_insert_Node(LIST *node, TYPE value) {
+void list_insert_Node(LIST *node, TYPE const value) {
 
     /* check the Node */
     if (node == NULL) {
@@ -323,6 +330,87 @@ void list_delete_Node(LIST *list, LIST *node) {
 }
 
 
+/* swap the values of two Nodes of the List */
+extern void list_swap(TYPE *a, TYPE *b);
+
+
+/* sort the List using Bubble Sort */
+void list_sort(LIST *list, size_t const start, size_t const end) {
+
+    /* get the length of the list */
+    size_t length = list_length(list);
+    
+    /* check the indexes */
+    if (end > length || start >= end || list == NULL) {
+
+        /* exit */
+        return;
+
+    }
+    
+    /* go to the starting Node */
+    list = list_Node(list, start);
+
+    /* Bubble Sort */
+    size_t size = end - start + 1;
+    for (size_t i = 1; i <= size; i++) {  
+
+        /* insert the maximum element at the end */
+        LIST *temp = list;
+        for (size_t j = 1; j <= size - i; j++) {
+
+            if (temp->value > temp->next->value) {
+
+                /* swap the element with a bigger one */
+                list_swap(&(temp->value), &(temp->next->value));
+
+            }
+            temp = temp->next;
+
+        }
+
+    }
+
+    /* exit */
+    return;
+   
+}
+
+
+/* reverse the List */
+void list_reverse(LIST *list, size_t const start, size_t const end) {
+
+    /* get the length of the list */
+    size_t length = list_length(list);
+    
+    /* check the indexes */
+    if (end > length || start >= end || list == NULL) {
+
+        /* exit */
+        return;
+
+    }
+
+    /* go to the starting Node */
+    LIST *node_sx = list_Node(list, start);
+
+    /* reverse the List */
+    size_t size = end - start + 1;
+    size_t middle = size >> 1;
+    for (size_t i = 0; i < middle; i++) {
+
+        LIST *node_dx = list_Node(node_sx, size - (i << 1));
+        list_swap(&(node_sx->value), &(node_dx->value));
+        node_sx = node_sx->next;
+
+    }
+
+    /* exit */
+    return;
+
+}
+
+
 /* copy the List from a src */
 extern LIST *list_copy(LIST *src);
 
@@ -381,6 +469,78 @@ LIST *list_free(LIST *list) {
 }
 
 
+/* ----------------------------------------------------------------------------------- 4. UTILITY ----------------------------------------------------------------------------------- */
+
+
+/* get the length of a List */
+extern size_t list_length(LIST *list);
+
+
+/* find the first occurrence of a value in the List */
+LIST *list_find(LIST *list, TYPE const value) {
+
+    /* search the value in the List */
+    for (; list != NULL && list->value != value; list = list->next);
+
+    /* exit */
+    return list;
+    
+}
+
+
+/* get a pointer to the given node */
+LIST *list_Node(LIST *list, size_t const node) {
+
+    /* check the indexes */
+    size_t length = list_length(list);
+    if (node < 1 || node > length) {
+
+        /* exit */
+        return NULL;
+
+    }
+
+    /* go to the Node */
+    for (size_t i = 1; i < node; i++) {
+
+        list = list->next;
+
+    }
+
+    /* exit */
+    return list;
+
+}
+
+
+/* fill the List with a value */
+void list_fill(LIST *list, size_t const start, size_t const end, TYPE const value) {
+
+    /* check the indexes */
+    if (start > end || list == NULL) {
+
+        /* exit */
+        return;
+
+    }
+    
+    /* go to the starting Node */
+    LIST *temp = list_Node(list,start);
+
+    /* fill the List */
+    for (size_t i = start; temp != NULL && i <= end; i++) {
+
+        temp->value = value;
+        temp = temp->next;
+
+    }
+
+    /* exit */
+    return;
+
+}
+
+
 /* library end definition */
 #undef list_add_Node
 #undef list_scan
@@ -391,9 +551,16 @@ LIST *list_free(LIST *list) {
 #undef list_insert_Node
 #undef list_delete_Head
 #undef list_delete_Node
+#undef list_swap
+#undef list_sort
+#undef list_reverse
 #undef list_copy
 #undef list_concatenate
 #undef list_free
+#undef list_length
+#undef list_find
+#undef list_Node
+#undef list_fill
 
 #undef TYPE
 #undef TYPE_SPECIFIER

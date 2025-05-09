@@ -1,6 +1,6 @@
 # Variables
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -static
 
 # Project Sources
 SRC_INT = myList_int.c
@@ -9,7 +9,7 @@ SRC_PROJECT = main.c # ---------- Project '.c' file
 
 # Assembly Sources
 ASM_DIR = assembly
-ASM_SRC = copy
+ASM_SRC = swap copy length
 ASM_OBJ_INT = $(patsubst %, $(ASM_DIR)/list_%_int.o, $(ASM_SRC))
 ASM_OBJ_FLOAT = $(patsubst %, $(ASM_DIR)/list_%_float.o, $(ASM_SRC))
 

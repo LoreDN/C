@@ -6,10 +6,11 @@
 *  Despite this limitation, the library is designed to be used with all numeric types ( int, float, ecc... ).
 *  In order to use a specific type, it is necessary to add the right 'myArray_type.c' files when compiling.
 *
-*  The functions included in this library are divided in three groups:
+*  The functions included in this library are divided in four groups:
 *     1. SCAN A LIST: used to scan a LIST from user input or from a file.
 *     2. PRINT A LIST: used to print a LIST to the user or to a file.
 *     3. OPERATIONS ON A LIST: used to perform more specific operations on a LIST (such as insert/delete a nodes).
+*     4. UTILITY: casual use functions (such as search of an element). 
 *
 *
 *  |-----** IMPORTANT!!! **-----|
@@ -36,7 +37,7 @@
 
 /* --------------------------------------------------------------------------------- 1. SCAN A LIST --------------------------------------------------------------------------------- */
 
-LIST *list_add_Node(TYPE value);
+LIST *list_add_Node(TYPE const value);
 LIST *list_scan(size_t const size);
 LIST *list_scan_file(char const *path);
 
@@ -47,12 +48,23 @@ void list_print_file(LIST *list, char const *path, int const flag_user_interface
 
 /* ---------------------------------------------------------------------------- 3. OPERATIONS ON A LIST ----------------------------------------------------------------------------- */
 
-LIST *list_insert_Head(LIST *list, TYPE value);
-void list_insert_Node(LIST *node, TYPE value);
+LIST *list_insert_Head(LIST *list, TYPE const value);
+void list_insert_Node(LIST *node, TYPE const value);
 LIST *list_delete_Head(LIST *list);
 void list_delete_Node(LIST *list, LIST *node);
+
+extern void list_swap(TYPE *a, TYPE *b);
+void list_sort(LIST *list, size_t const start, size_t const end);
+void list_reverse(LIST *list, size_t const start, size_t const end);
 
 extern LIST *list_copy(LIST *src);
 void list_concatenate(LIST *list, LIST *src);
 
 LIST *list_free(LIST *list);
+
+/* ----------------------------------------------------------------------------------- 4. UTILITY ----------------------------------------------------------------------------------- */
+
+extern size_t list_length(LIST *list);
+LIST *list_find(LIST *list, TYPE const value);
+LIST *list_Node(LIST *list, size_t const node);
+void list_fill(LIST *list, size_t const start, size_t const end, TYPE const value);
