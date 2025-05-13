@@ -5,6 +5,8 @@
 *  For each type, has been already given a definition for the LIST, however it consist in a struct of one element and a Node pointer to the next struct LIST.
 *  Despite this limitation, the library is designed to be used with all numeric types ( int, float, ecc... ).
 *  In order to use a specific type, it is necessary to add the right 'myArray_type.c' files when compiling.
+*  For max optimization, some functions have been implemented directly in assembly ( the functions with the 'extern' prefix ).
+*  Since the library cointains external files, is raccomended to use the 'Makefile' given with the library.
 *
 *  The functions included in this library are divided in four groups:
 *     1. SCAN A LIST: used to scan a LIST from user input or from a file.
