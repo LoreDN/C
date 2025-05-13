@@ -28,4 +28,6 @@ If a library has been optimized in Assembly, all the needed info are given in th
 ## :open_book: Contents of the libraries
 Here is a list of the libraries wich can be found in the repo, everyone in their subfolder:
 ### 1. <strong>myArray</strong>
->a simple library wich allows to work with arrays, such as scanning and printing an array from or to different sources (terminal,file), sorting an array, use some statistics and maths functions.
+>A library wich allows to work with arrays; contains usefull functions such as scanning and printing an array from or to different sources (terminal,file), sorting an array, use some statistics and maths functions.
+### 2. <strong>myList</strong>
+>A library wich allows to work with Lists; contains usefull functions such as scanning and printing a List from or to different sources (terminal,file), operate with Nodes (inserting, deleting), ordinate a List.
