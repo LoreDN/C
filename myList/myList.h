@@ -1,25 +1,25 @@
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *
-*  This library contains some usefull functions to work with Lists.
-*  Since each node in a List can be a custom struct, the library has been designed to work with a precise type myList_type.
+*  This library contains some usefull functions to work with Linked-Lists.
+*  Since each node in a Linked-List can be a custom struct, the library has been designed to work with a precise type myList_type.
 *  For each type, has been already given a definition for the LIST, however it consist in a struct of one element and a Node pointer to the next struct LIST.
 *  Despite this limitation, the library is designed to be used with all numeric types ( int, float, ecc... ).
-*  In order to use a specific type, it is necessary to add the right 'myArray_type.c' files when compiling.
+*  In order to use a specific type, it is necessary to add the right 'myList_type.c' files when compiling.
 *  For max optimization, some functions have been implemented directly in assembly ( the functions with the 'extern' prefix ).
 *  Since the library cointains external files, is raccomended to use the 'Makefile' given with the library.
 *
 *  The functions included in this library are divided in four groups:
 *     1. SCAN A LIST: used to scan a LIST from user input or from a file.
 *     2. PRINT A LIST: used to print a LIST to the user or to a file.
-*     3. OPERATIONS ON A LIST: used to perform more specific operations on a LIST (such as insert/delete a nodes).
-*     4. UTILITY: casual use functions (such as search of an element). 
+*     3. OPERATIONS ON A LIST: used to perform more specific operations on a LIST ( such as insert/delete a nodes ).
+*     4. UTILITY: casual use functions ( such as search of an element ). 
 *
 *
 *  |-----** IMPORTANT!!! **-----|
 *  Since this library is designed to be used with different types of elements, there are two ways of using it:
-*     - Single Usage: use the library a single time (use with a single type of array).
-*     - Multiple Usage: use the library multiple times (use with different types of arrays).
-*  In order to use a type, all you have to do is only to include the corrispective 'myArray_type.h' file in the project.
+*     - Single Usage: use the library a single time ( use with a single type of Linked-Lists ).
+*     - Multiple Usage: use the library multiple times ( use with different types of Linked-Lists ).
+*  In order to use a type, all you have to do is only to include the corrispective 'myList_type.h' file in the project.
 *
 *  Example of Single Usage:
 *     #include "myLIST_int.h"

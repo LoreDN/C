@@ -9,14 +9,14 @@
 *     1. SCAN AN ARRAY: used to scan an array from user input or from a file.
 *     2. PRINT AN ARRAY: used to print an array to the user or to a file.
 *     3. SORT AN ARRAY: used to sort an array using different sorting algorithms.
-*     4. UTILITY: casual use functions (such as binary search).
-*     5. STATISTICS ON THE ELEMENTS: used to calculate some statistics on the elements of an array (such as max/min values).
+*     4. UTILITY: casual use functions ( such as binary search ).
+*     5. STATISTICS ON THE ELEMENTS: used to calculate some statistics on the elements of an array ( such as max/min values ).
 *
 *
 *  |-----** IMPORTANT!!! **-----|
 *  Since this library is designed to be used with different types of arrays, there are two ways of using it:
-*     - Single Usage: use the library a single time (use with a single type of array).
-*     - Multiple Usage: use the library multiple times (use with different types of arrays).
+*     - Single Usage: use the library a single time ( use with a single type of array ).
+*     - Multiple Usage: use the library multiple times ( use with different types of arrays ).
 *  In order to use a type, all you have to do is only to include the corrispective 'myArray_type.h' file in the project.
 *
 *  Example of Single Usage:

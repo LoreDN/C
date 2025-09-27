@@ -3,10 +3,10 @@
 #include <stdlib.h>
 
 /* library type definition */
-#define TYPE float
-#define TYPE_SPECIFIER "%f"
-#define NODE myNode_float
-#define LIST myList_float
+#define TYPE int
+#define TYPE_SPECIFIER "%d"
+#define NODE myNode_int
+#define LIST myList_int
 
 /* library List definition */
 typedef struct NODE {
@@ -16,26 +16,27 @@ typedef struct NODE {
 
 }LIST;
 
+
 /* multiple usage definition */
-#define list_add_Node list_add_Node_float
-#define list_scan list_scan_float
-#define list_scan_file list_scan_file_float
-#define list_print list_print_float
-#define list_print_file list_print_file_float
-#define list_insert_Head list_insert_Head_float
-#define list_insert_Node list_insert_Node_float
-#define list_delete_Head list_delete_Head_float
-#define list_delete_Node list_delete_Node_float
-#define list_swap list_swap_float
-#define list_sort list_sort_float
-#define list_reverse list_reverse_float
-#define list_copy list_copy_float
-#define list_concatenate list_concatenate_float
-#define list_free list_free_float
-#define list_length list_length_float
-#define list_find list_find_float
-#define list_Node list_Node_float
-#define list_fill list_fill_float
+#define list_add_Node list_add_Node_int
+#define list_scan list_scan_int
+#define list_scan_file list_scan_file_int
+#define list_print list_print_int
+#define list_print_file list_print_file_int
+#define list_insert_Head list_insert_Head_int
+#define list_insert_Node list_insert_Node_int
+#define list_delete_Head list_delete_Head_int
+#define list_delete_Node list_delete_Node_int
+#define list_swap list_swap_int
+#define list_sort list_sort_int
+#define list_reverse list_reverse_int
+#define list_copy list_copy_int
+#define list_concatenate list_concatenate_int
+#define list_free list_free_int
+#define list_length list_length_int
+#define list_find list_find_int
+#define list_Node list_Node_int
+#define list_fill list_fill_int
 
 /* library definition */
 #include "myList.h"
@@ -44,7 +45,7 @@ typedef struct NODE {
 /* --------------------------------------------------------------------------------- 1. SCAN A LIST --------------------------------------------------------------------------------- */
 
 
-/* add a new Node to the List */
+/* add a new Node to the Linked-List */
 LIST *list_add_Node(TYPE const value) {
 
     /* create the new Node */
@@ -68,14 +69,14 @@ LIST *list_add_Node(TYPE const value) {
 }
 
 
-/* scan a List from user input */
+/* scan a Linked-List from user input */
 LIST *list_scan(size_t const size) {
 
-    /* go to the end of the List */
+    /* go to the end of the Linked-List */
     LIST *list = NULL;
     LIST *current = NULL;
 
-    /* scan the List */
+    /* scan the Linked-List */
     for (size_t i = 0; i < size; i++) {
 
         /* get the value */
@@ -106,7 +107,7 @@ LIST *list_scan(size_t const size) {
 }
 
 
-/* scan a List from a file */
+/* scan a Linked-List from a file */
 LIST *list_scan_file(char const *path) {
 
     /* open the file */
@@ -120,7 +121,7 @@ LIST *list_scan_file(char const *path) {
         
     }
 
-    /* go to the end of the List */
+    /* go to the end of the Linked-List */
     LIST *list = NULL;
     LIST *current = NULL;
 
@@ -160,7 +161,7 @@ LIST *list_scan_file(char const *path) {
 /* -------------------------------------------------------------------------------- 2. PRINT A LIST --------------------------------------------------------------------------------- */
 
 
-/* print the List to the user */
+/* print the Linked-List to the user */
 void list_print(LIST *list, int const flag_user_interface) {
 
     /* if flag is set to 1, print the user interface */
@@ -190,7 +191,7 @@ void list_print(LIST *list, int const flag_user_interface) {
 }
 
 
-/* print the List to a file */
+/* print the Linked-List to a file */
 void list_print_file(LIST *list, char const *path, int const flag_user_interface) {
 
     /* open the file */
@@ -238,10 +239,10 @@ void list_print_file(LIST *list, char const *path, int const flag_user_interface
 /* ---------------------------------------------------------------------------- 3. OPERATIONS ON A LIST ----------------------------------------------------------------------------- */
 
 
-/* insert a new Node as head of the List */
+/* insert a new Node as head of the Linked-List */
 LIST *list_insert_Head(LIST *list, TYPE const value) {
 
-    /* check the List */
+    /* check the Linked-List */
     if (list == NULL) {
 
         /* exit */
@@ -249,7 +250,7 @@ LIST *list_insert_Head(LIST *list, TYPE const value) {
 
     }
 
-    /* insert the new Head to the List*/
+    /* insert the new Head to the Linked-List*/
     LIST *newHead = list_add_Node(value);
     newHead->next = list;
 
@@ -258,7 +259,7 @@ LIST *list_insert_Head(LIST *list, TYPE const value) {
 }
 
 
-/* insert a new Node into the List */
+/* insert a new Node into the Linked-List */
 void list_insert_Node(LIST *node, TYPE const value) {
 
     /* check the Node */
@@ -269,7 +270,7 @@ void list_insert_Node(LIST *node, TYPE const value) {
 
     }
 
-    /* insert the new Node into the List */
+    /* insert the new Node into the Linked-List */
     LIST *newNode = list_add_Node(value);
     newNode->next = node->next;
     node->next = newNode;
@@ -280,10 +281,10 @@ void list_insert_Node(LIST *node, TYPE const value) {
 }
 
 
-/* delete the head of the List */
+/* delete the head of the Linked-List */
 LIST *list_delete_Head(LIST *list) {
 
-    /* check the List */
+    /* check the Linked-List */
     if (list == NULL) {
 
         /* exit */
@@ -291,7 +292,7 @@ LIST *list_delete_Head(LIST *list) {
 
     }
 
-    /* delete the head of the List */
+    /* delete the head of the Linked-List */
     LIST *newHead = list->next;
     free(list);
 
@@ -301,11 +302,11 @@ LIST *list_delete_Head(LIST *list) {
 }
 
 
-/* delete a Node from the List */
+/* delete a Node from the Linked-List */
 void list_delete_Node(LIST *list, LIST *node) {
 
     /* check the Node */
-    if (node == NULL) {
+    if (list == NULL || node == NULL) {
 
         /* exit */
         return;
@@ -314,7 +315,7 @@ void list_delete_Node(LIST *list, LIST *node) {
 
     /* go to the previous Node */
     LIST *previous = list;
-    while (previous->next != node) {
+    while (previous != NULL && previous->next != node) {
 
         previous = previous->next;
 
@@ -330,14 +331,10 @@ void list_delete_Node(LIST *list, LIST *node) {
 }
 
 
-/* swap the values of two Nodes of the List */
-extern void list_swap(TYPE *a, TYPE *b);
-
-
-/* sort the List using Bubble Sort */
+/* sort the Linked-List using Bubble Sort */
 void list_sort(LIST *list, size_t const start, size_t const end) {
 
-    /* get the length of the list */
+    /* get the length of the Linked-List */
     size_t length = list_length(list);
     
     /* check the indexes */
@@ -377,10 +374,10 @@ void list_sort(LIST *list, size_t const start, size_t const end) {
 }
 
 
-/* reverse the List */
+/* reverse the Linked-List */
 void list_reverse(LIST *list, size_t const start, size_t const end) {
 
-    /* get the length of the list */
+    /* get the length of the Linked-List */
     size_t length = list_length(list);
     
     /* check the indexes */
@@ -394,7 +391,7 @@ void list_reverse(LIST *list, size_t const start, size_t const end) {
     /* go to the starting Node */
     LIST *node_sx = list_Node(list, start);
 
-    /* reverse the List */
+    /* reverse the Linked-List */
     size_t size = end - start + 1;
     size_t middle = size >> 1;
     for (size_t i = 0; i < middle; i++) {
@@ -411,14 +408,13 @@ void list_reverse(LIST *list, size_t const start, size_t const end) {
 }
 
 
-/* copy the List from a src */
+/* copy the Linked-List from a src */
 extern LIST *list_copy(LIST *src);
 
-
-/* concatenate two Lists */
+/* concatenate two Linked-Lists */
 void list_concatenate(LIST *list, LIST *src) {
 
-    /* check the Lists */
+    /* check the Linked-Lists */
     if (list == NULL || src == NULL) {
 
         /* exit */
@@ -426,7 +422,7 @@ void list_concatenate(LIST *list, LIST *src) {
 
     }
 
-    /* go to the end of the List */
+    /* go to the end of the Linked-List */
     LIST *current = list;
     while (current->next != NULL) {
 
@@ -434,7 +430,7 @@ void list_concatenate(LIST *list, LIST *src) {
 
     }
 
-    /* concatenate the Lists */
+    /* concatenate the Linked-Lists */
     current->next = src;
 
     /* exit */
@@ -443,10 +439,10 @@ void list_concatenate(LIST *list, LIST *src) {
 }
 
 
-/* free the List */
+/* free the Linked-List */
 LIST *list_free(LIST *list) {
 
-    /* check the List */
+    /* check the Linked-List */
     if (list == NULL) {
 
         /* exit */
@@ -454,7 +450,7 @@ LIST *list_free(LIST *list) {
 
     }
 
-    /* free the List */
+    /* free the Linked-List */
     while (list != NULL) {
 
         LIST *next = list->next;
@@ -472,19 +468,19 @@ LIST *list_free(LIST *list) {
 /* ----------------------------------------------------------------------------------- 4. UTILITY ----------------------------------------------------------------------------------- */
 
 
-/* get the length of a List */
+/* get the length of a Linked-List */
 extern size_t list_length(LIST *list);
 
 
-/* find the first occurrence of a value in the List */
+/* find the first occurrence of a value in the Linked-List */
 LIST *list_find(LIST *list, TYPE const value) {
 
-    /* search the value in the List */
+    /* search the value in the Linked-List */
     for (; list != NULL && list->value != value; list = list->next);
 
     /* exit */
     return list;
-    
+
 }
 
 
@@ -513,7 +509,7 @@ LIST *list_Node(LIST *list, size_t const node) {
 }
 
 
-/* fill the List with a value */
+/* fill the Linked-List with a value */
 void list_fill(LIST *list, size_t const start, size_t const end, TYPE const value) {
 
     /* check the indexes */
@@ -561,6 +557,7 @@ void list_fill(LIST *list, size_t const start, size_t const end, TYPE const valu
 #undef list_find
 #undef list_Node
 #undef list_fill
+
 
 #undef TYPE
 #undef TYPE_SPECIFIER
