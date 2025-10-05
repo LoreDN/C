@@ -1,0 +1,8 @@
+Package: mylist
+Version: 1.0
+Section: libs
+Priority: optional
+Architecture: amd64
+Maintainer: Lorenzo Di Napoli <lorenzo_dinapoli@icloud.com>
+Description: C Library myList
+ Library which provides usefull functions when working with Linked-Lists (simulates templates via different-type headers), optimised with Assembly x86_64.
