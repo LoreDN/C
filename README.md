@@ -25,19 +25,28 @@ If a library has been optimized in Assembly, all the necessary info are provided
 # 📦 Packages Releases
 In order to make as easy as possible to get and use the libraries, the only thing that the user needs to do is to install the wanted *.deb* package.<br>
 It can be done with the following **bash** commands:
+
 ```bash
-# change LIB_VERSION / LIB_ARCHITECTURE with the wanted ones (as myArray_v1.0 / myarray_amd64)
+# change LIB / PACKAGE with the wanted ones (as myArray / myarray_amd64)
 
 # download the wanted package
-wget https://github.com/LoreDN/code-C/releases/download/LIB_VERSION/LIB_ARCHITECTURE.deb
+wget https://github.com/LoreDN/code-C/releases/download/LIB/PACKAGE.deb
 
 # install the package
-sudo dpkg -i LIB_ARCHITECTURE.deb
+sudo dpkg -i PACKAGE.deb
 
 # add the "LDN" subfolder path (one time --- works for all libraries)
 echo "/usr/lib/LDN" | sudo tee /etc/ld.so.conf.d/ldn.conf
 sudo ldconfig
 ```
+
+Finally, in order to compile your program using the library, all you have left to do is to add this command to the compilation one:
+
+```bash
+# -lLIB indicates the library binary file, you have to change LIB with the wanted one (as myArray)
+-L/usr/lib/LDN -lLIB
+```
+
 <br>
 <br>
 
@@ -50,11 +59,11 @@ A library which allows to work with Arrays; contains usefull functions such as s
 
 ```bash
 # x86_64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myArray_v1.0/myarray_amd64.deb
+wget https://github.com/LoreDN/code-C/releases/download/myArray/myarray_amd64.deb
 sudo dpkg -i myarray_amd64.deb
 
 # RISC-V64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myArray_v1.0/myarray_riscv64.deb
+wget https://github.com/LoreDN/code-C/releases/download/myArray/myarray_riscv64.deb
 sudo dpkg -i myarray_riscv64.deb
 ```
 
@@ -63,10 +72,10 @@ A library which allows to work with Linked-Lists; contains usefull functions suc
 
 ```bash
 # x86_64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myList_v1.0/mylist_amd64.deb
+wget https://github.com/LoreDN/code-C/releases/download/myList/mylist_amd64.deb
 sudo dpkg -i mylist_amd64.deb
 
 # RISC-V64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myList_v1.0/mylist_riscv64.deb
+wget https://github.com/LoreDN/code-C/releases/download/myList/mylist_riscv64.deb
 sudo dpkg -i mylist_riscv64.deb
 ```
