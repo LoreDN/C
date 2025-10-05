@@ -1,0 +1,8 @@
+Package: myarray
+Version: 1.0
+Section: libs
+Priority: optional
+Architecture: riscv64
+Maintainer: Lorenzo Di Napoli <lorenzo_dinapoli@icloud.com>
+Description: C Library myArray
+ Library which provides usefull functions when working with Arrays (simulates templates via different-type headers), optimized with Assembly RISC-V64.
