@@ -1,4 +1,4 @@
-# 💻 CODE - C
+# 💻 LoreDN/C
 This repository is a collection of libraries for programming in **C**.
 <br>
 Some libraries work as templates, despite their absence in pure **C**; for each type you want to use this libraries with, it must be used an unic *'library_type.c'* file.<br>
@@ -27,10 +27,10 @@ In order to make as easy as possible to get and use the libraries, the only thin
 It can be done with the following **bash** commands:
 
 ```bash
-# change LIB / PACKAGE with the wanted ones (as myArray / myarray_amd64)
+# change LIB / VERSION / PACKAGE with the wanted ones (as myArray / v1.0 / myarray_amd64)
 
 # download the wanted package
-wget https://github.com/LoreDN/code-C/releases/download/LIB/PACKAGE.deb
+wget https://github.com/LoreDN/C/releases/download/LIB_VERSION/PACKAGE.deb
 
 # install the package
 sudo dpkg -i PACKAGE.deb
@@ -59,11 +59,11 @@ A library which allows to work with Arrays; contains usefull functions such as s
 
 ```bash
 # x86_64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myArray/myarray_amd64.deb
+wget https://github.com/LoreDN/C/releases/download/myArray_v1.0/myarray_amd64.deb
 sudo dpkg -i myarray_amd64.deb
 
 # RISC-V64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myArray/myarray_riscv64.deb
+wget https://github.com/LoreDN/C/releases/download/myArray_v1.0/myarray_riscv64.deb
 sudo dpkg -i myarray_riscv64.deb
 ```
 
@@ -72,10 +72,10 @@ A library which allows to work with Linked-Lists; contains usefull functions suc
 
 ```bash
 # x86_64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myList/mylist_amd64.deb
+wget https://github.com/LoreDN/code-C/releases/download/myList_v1.0/mylist_amd64.deb
 sudo dpkg -i mylist_amd64.deb
 
 # RISC-V64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myList/mylist_riscv64.deb
+wget https://github.com/LoreDN/code-C/releases/download/myList_v1.0/mylist_riscv64.deb
 sudo dpkg -i mylist_riscv64.deb
 ```
