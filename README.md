@@ -72,10 +72,10 @@ A library which allows to work with Linked-Lists; contains usefull functions suc
 
 ```bash
 # x86_64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myList_v1.0/mylist_amd64.deb
+wget https://github.com/LoreDN/C/releases/download/myList_v1.0/mylist_amd64.deb
 sudo dpkg -i mylist_amd64.deb
 
 # RISC-V64 latest
-wget https://github.com/LoreDN/code-C/releases/download/myList_v1.0/mylist_riscv64.deb
+wget https://github.com/LoreDN/C/releases/download/myList_v1.0/mylist_riscv64.deb
 sudo dpkg -i mylist_riscv64.deb
 ```
